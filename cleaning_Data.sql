@@ -1,12 +1,12 @@
-#pembuatan table
+#Creating Table
 create table player_char(
 ID MEDIUMINT UNSIGNED DEFAULT 0,
 short_name VARCHAR(40),
 overall TINYINT UNSIGNED,
 potential TINYINT UNSIGNED,
 age TINYINT UNSIGNED,
-international_reputation TINYINT UNSIGNED
-);
+international_reputation TINYINT UNSIGNED);
+
 create table positions(
 ID MEDIUMINT UNSIGNED DEFAULT 0,
 club_name VARCHAR(40),
@@ -14,15 +14,14 @@ league_name VARCHAR(40),
 club_position VARCHAR(5),
 nationality_name VARCHAR(40),
 nation_position VARCHAR(5),
-player_position VARCHAR(3)
-);
+player_position VARCHAR(3));
+
 create table cost(
 ID MEDIUMINT UNSIGNED DEFAULT 0,
 Price BIGINT UNSIGNED DEFAULT 0,
-Wage INT UNSIGNED DEFAULT 0
-);
+Wage INT UNSIGNED DEFAULT 0);
 
-#import data
+#Retrieve Data From Kaggle
 LOAD DATA INFILE 'player_char.csv'
 INTO TABLE player_char
 FIELDS TERMINATED BY ','
@@ -36,10 +35,10 @@ INTO TABLE cost
 FIELDS TERMINATED BY ','
 IGNORE 1 ROWS;
 
-#lakukan trim pada kolom player_position supaya tidak ada posisi yang terbaca ganda
+#Trimming in player_position column
 update positions set player_position = TRIM(player_position);
 
-#Mengganti value ‘SUB, RES’ dan data kosong di kolom club_position dengan value dari player_position
+#Change 'SUB','RES' and empty value in club_position column with value from player_position column
 update positions set club_position = player_position where club_position = 'SUB';
 update positions set club_position = player_position where club_position = 'RES';
 update positions set club_position = player_position where club_position = '';
