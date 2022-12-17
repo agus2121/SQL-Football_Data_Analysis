@@ -1,0 +1,23 @@
+#Pembuatan Table
+create table player_char(
+ID MEDIUMINT UNSIGNED DEFAULT 0,
+short_name VARCHAR(40),
+overall TINYINT UNSIGNED,
+potential TINYINT UNSIGNED,
+age TINYINT UNSIGNED,
+international_reputation TINYINT UNSIGNED);
+
+create table positions(
+ID MEDIUMINT UNSIGNED DEFAULT 0,
+club_name VARCHAR(40),
+league_name VARCHAR(40),
+club_position VARCHAR(5),
+nationality_name VARCHAR(40),
+nation_position VARCHAR(5),
+player_position VARCHAR(3));
+
+create table cost(
+ID MEDIUMINT UNSIGNED DEFAULT 0,
+Price BIGINT UNSIGNED DEFAULT 0,
+Wage INT UNSIGNED DEFAULT 0
+);
