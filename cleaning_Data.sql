@@ -43,22 +43,22 @@ update positions set club_position = player_position where club_position = 'SUB'
 update positions set club_position = player_position where club_position = 'RES';
 update positions set club_position = player_position where club_position = '';
 
-#Membuat kolom baru untuk klasifikasi role pemain berdasarkan posisi
-#Catatan untuk role pemain 
-#GK
-#Defense (CB, LB, RB, RCB, LCB, RWB, LWB)
-#Mid (CM,CDM,RM,LM,CAM,LCM,RCM,RDM,LDM,LAM,RAM) 
-#Attack ( ST, RW, LW, RS, LS, CF, LF, RF)
+/*Membuat kolom baru untuk klasifikasi role pemain berdasarkan posisi
+Notes for role 
+GK (GK)
+Defense (CB, LB, RB, RCB, LCB, RWB, LWB)
+Mid (CM,CDM,RM,LM,CAM,LCM,RCM,RDM,LDM,LAM,RAM) 
+Attack (ST, RW, LW, RS, LS, CF, LF, RF)*/
 
 update positions set role = 'GK' WHERE club_position = 'GK';
 update positions set role = 'Defense' WHERE club_position IN ('CB','LB','RB','RCB','LCB','RWB','LWB');
 update positions set role = 'Mid' WHERE club_position IN ('CM','CDM','RM','LM','CAM','LCM','RCM','RDM','LDM','LAM','RAM');
 update positions set role = 'Attack' WHERE club_position IN ('ST','RW','LW','RS','LS','CF','LF','RF');
 
-#drop kolom nation_position dan player_position dari tabel positions
+#Drop nation_position and player_position column from positions table
 alter table positions
     -> drop column nation_position,
     -> drop column player_position;
 
-#ganti judul kolom pada tabel positions
+#Change the column title to player_positions
 alter table positions change club_position player_position VARCHAR(3);
